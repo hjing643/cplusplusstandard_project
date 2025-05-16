@@ -54,5 +54,29 @@ TEST(testcpp17, test_constexpr)
     EXPECT_EQ(std::get<int>(x2), 1);
     x2 = "123";
     EXPECT_EQ(std::get<std::string>(x2), "123");
-        
+
+    std::any a = 1;
+    EXPECT_EQ(std::any_cast<int>(a), 1);
+    EXPECT_TRUE(a.type() == typeid(int));
+    try
+    {
+        std::any_cast<std::string>(a);
+    }
+    catch (const std::bad_any_cast& e)
+    {
+        auto msg = e.what();
+        auto msg2 = "bad_any_cast";
+        EXPECT_EQ(*msg, *msg2);
+    }
+
+    a = "123";
+    EXPECT_EQ(std::any_cast<std::string>(a), "123");
+    EXPECT_TRUE(a.type() == typeid(std::string));
+
+    std::string s = "hello";
+    std::string_view sv = s;
+    EXPECT_EQ(sv.size(), 5);
+    std::string_view sv2 = sv.substr(0, 2);
+    EXPECT_EQ(sv2.size(), 2);
+    EXPECT_EQ(s.data(), sv2.data());
 }
