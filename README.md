@@ -43,6 +43,14 @@ string_view
 I am a temporary value, no memory, but i have length, it's easy to substr, at
 明确我是一个空壳，我只是为了方便计算，我在开始就确定了指向哪个内存，长度是多少，不需要char*, int length两个变量表示了
 
+c++20
+export/import
+if we use include"a1.h", the cpp will add a1.h all text in the cpp and compile
+more and more header file. slow and slow
+export means we can compile some pre-file, cpp use it direclty ,no need include.
+in the future, we don't need #include "xx.h", use export module direclty
+
+
 
 
 

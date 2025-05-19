@@ -8,9 +8,15 @@ project(cplusplus_standard_project)
 enable_testing()
 
 # set c++ standard
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)   
 #set(CMAKE_CXX_EXTENSIONS OFF)  
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+  add_compile_options(-fmodules-ts)
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+  add_compile_options(-fmodules)
+endif()
+
 
 # set static
 #set(CMAKE_EXE_LINKER_FLAGS "-static")

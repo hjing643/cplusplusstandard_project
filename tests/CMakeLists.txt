@@ -3,12 +3,19 @@ find_package(GTest REQUIRED)       # 如果用系统安装的 gtest
 file(GLOB TEST_SOURCES "*.cpp")
 
 # 定义测试可执行文件
-add_executable(test_suite ${TEST_SOURCES})
+add_executable(test_suite
+  ${TEST_SOURCES}
+)
 
 # 链接测试框架和被测库
 target_link_libraries(test_suite
     PRIVATE
-      GTest::gtest_main   # 如果用 gtest_main
+    GTest::gtest_main   # 如果用 gtest_main
+)
+
+set_target_properties(test_suite PROPERTIES
+  CXX_STANDARD 20
+  CXX_EXTENSIONS OFF
 )
 
 # 自动发现并注册测试
